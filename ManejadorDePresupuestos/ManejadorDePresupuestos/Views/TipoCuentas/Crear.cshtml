@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Tipo Cuenta";
+}
+
+<h1>Crear tipo de cuenta</h1>
+<p>Este formulario sirve para agregar un tipo de cuenta, ej: Corriente,Vista, Ahorro, etc</p>
+
+<form asp-controller="TipoCuentas" asp-action="Crear">
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input name="name" id="name" class="form-control" placeholder="Ingresa tu nombre"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
