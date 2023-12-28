@@ -1,4 +1,4 @@
-﻿
+﻿@model TipoCuenta 
 @{
     ViewData["Title"] = "Tipo Cuenta";
 }
@@ -6,12 +6,51 @@
 <h1>Crear tipo de cuenta</h1>
 <p>Este formulario sirve para agregar un tipo de cuenta, ej: Corriente,Vista, Ahorro, etc</p>
 
+<!-- 
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+-->
 <form asp-controller="TipoCuentas" asp-action="Crear">
 
     <div class="mb-3">
-        <label for="name" class="form-label">Nombre</label>
-        <input name="name" id="name" class="form-control" placeholder="Ingresa tu nombre"/>
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" placeholder="Ingresa tu nombre"/>
+        <span asp-validation-for="Nombre" class="text-danger"></span>
     </div>
 
+    <!-- Validaciones adicionales
+
+        <div class="mb-3">
+        <label asp-for="Edad" class="form-label"></label>
+        <input asp-for="Edad" class="form-control" placeholder="Ingresa tu nombre"/>
+        <span asp-validation-for="Edad" class="text-danger"></span>
+    </div>
+
+        <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" placeholder="Ingresa tu nombre" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="URL" class="form-label"></label>
+        <input asp-for="URL" class="form-control" placeholder="Ingresa tu nombre" />
+        <span asp-validation-for="URL" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TarjetaDeCredito" class="form-label"></label>
+        <input asp-for="TarjetaDeCredito" class="form-control" placeholder="Ingresa tu nombre" />
+        <span asp-validation-for="TarjetaDeCredito" class="text-danger"></span>
+    </div>
+    -->
+
+
     <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
 </form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

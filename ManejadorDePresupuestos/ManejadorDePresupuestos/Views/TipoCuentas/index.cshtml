@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TipoCuenta>
+
+@{
+    ViewData["Title"] = "Tipos Cuentas";
+}
+
+<h1>Tipos de cuentas</h1>
+<h5>El tipo de cuenta se refiere a como podemos agrupar cuentas</h5>
+
+<a asp-action="Crear" class="btn btn-primary mb-3">Crear nuevo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody id="reordenable">
+        @foreach (var tipoCuenta in Model)
+        {
+            <tr>
+                <td>
+                    <input type="hidden" value="@tipoCuenta.ID" class="ids" />
+                    <a asp-action="Editar" asp-route-id ="@tipoCuenta.ID" class="btn btn-primary">Editar</a>
+                    <a asp-action="Borrar" asp-route-id ="@tipoCuenta.ID" class="btn btn-danger">Borrar</a>
+                </td>
+                <td>
+                    @tipoCuenta.Nombre
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+
+        const urlOrdenar = '@Url.Action("ordenar")'
+
+        $(function(){
+            $("#reordenable").sortable({
+                stop: async function(e,ui){
+                    await actualizarOrdenes();
+                }
+            });
+
+            async function actualizarOrdenes(){
+                const ids = obtenerIdsDeElementos();
+                await enviarLosIdsAlBack(ids)
+            }
+
+            function obtenerIdsDeElementos(){
+                const ids = $(".ids").map(function () {
+                    return $(this).val()}).get()
+                return ids;
+            }
+
+            async function enviarLosIdsAlBack(ids){
+                var data = JSON.stringify(ids)
+
+                await fetch(urlOrdenar, {
+                    method:"Post",
+                    body: data,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+            }
+
+        })
+    </script>
+}
