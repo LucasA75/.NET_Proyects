@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Cuentas/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhc1xDcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
