@@ -66,3 +66,4 @@ C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupues
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\obj\Debug\net8.0\ManejadorDePresupuestos.csproj.AssemblyReference.cache
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\obj\Debug\net8.0\ManejadorDePresupuestos.csproj.CopyComplete
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\obj\Debug\net8.0\scopedcss\Views\Cuentas\index.cshtml.rz.scp.css

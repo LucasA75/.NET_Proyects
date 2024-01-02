@@ -15,5 +15,6 @@ namespace ManejadorDePresupuestos.Models
         public decimal Balance { get; set; }
         [StringLength(1000, ErrorMessage = "El largo maximo a sido sobrepasado")]
         public string Descripcion { get; set; }
+        public string TipoCuenta { get; set; }
     }
 }

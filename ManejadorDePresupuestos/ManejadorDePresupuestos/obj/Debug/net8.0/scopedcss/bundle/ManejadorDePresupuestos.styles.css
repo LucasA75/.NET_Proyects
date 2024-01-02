@@ -1,3 +1,38 @@
+/* _content/ManejadorDePresupuestos/Views/Cuentas/index.cshtml.rz.scp.css */
+.contenedor-totales[b-c2thwp02b6] {
+    display: flex;
+    justify-content: space-around;
+    font-size: 26px;
+    text-align: center;
+}
+
+.activos[b-c2thwp02b6] {
+    color: darkblue;
+}
+
+.pasivos[b-c2thwp02b6] {
+    color: darkred;
+}
+
+.acordeon-cuentas button[b-c2thwp02b6] {
+    color: black !important;
+    font-size: 20px;
+}
+
+    .acordeon-cuentas button > span[b-c2thwp02b6] {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+.acordeon-cuentas ul li[b-c2thwp02b6] {
+    display: flex;
+    justify-content: space-between;
+}
+
+.acordeon-cuentas .accordion-collapse[b-c2thwp02b6] {
+    font-size: 18px;
+}
 /* _content/ManejadorDePresupuestos/Views/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */

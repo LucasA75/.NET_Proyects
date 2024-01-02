@@ -25,6 +25,7 @@ namespace ManejadorDePresupuestos.Controllers
             var modelo = new CuentaCreacionViewModel();
             modelo.TiposCuentas = await ObtenerTiposCuentas(usuarioID);
 
+            
             return View(modelo);
         }
 
@@ -32,7 +33,7 @@ namespace ManejadorDePresupuestos.Controllers
         public async Task<IActionResult>Crear(CuentaCreacionViewModel modelo)
         {
             var usuarioID = servicioUsuarios.ObtenerUsuarioID();
-            var tipoCuenta = await repositorioTipoCuentas.ObtenerPorID(modelo.ID, usuarioID);
+            var tipoCuenta = await repositorioTipoCuentas.ObtenerPorID(modelo.TipoCuentaID,usuarioID);
 
             if(tipoCuenta == null) { return RedirectToAction("NoEncontrado", "Home"); }
 
@@ -51,5 +52,42 @@ namespace ManejadorDePresupuestos.Controllers
             var tipoCuentas = await repositorioTipoCuentas.Obtener(usuarioID);
             return tipoCuentas.Select(x => new SelectListItem(x.Nombre, x.ID.ToString()));
         } 
+
+        public async Task<IActionResult> Index()
+        {
+            var usuarioID = servicioUsuarios.ObtenerUsuarioID();
+            var cuentasConTipoCuenta = await repositorioCuentas.Buscar(usuarioID);
+
+            var modelo = cuentasConTipoCuenta
+                .GroupBy(x => x.TipoCuenta)
+                .Select(grupo => new IndiceCuentasViewModel
+                {
+                    TipoCuenta = grupo.Key,
+                    Cuentas = grupo.AsEnumerable()
+                }).ToList();
+
+            return View(modelo);
+        }
+
+        public async Task<IActionResult> Editar(int id)
+        {
+            var usuarioID = servicioUsuarios.ObtenerUsuarioID();
+            var cuentaAEditar = await repositorioCuentas.ObtenerCuentaPorID(id,usuarioID);
+
+            if(cuentaAEditar == null) { return RedirectToAction("NoEncontrado","Home"); }
+
+            var modelo = new CuentaCreacionViewModel()
+            {
+                ID = cuentaAEditar.ID,
+                Nombre = cuentaAEditar.Nombre,
+                Descripcion = cuentaAEditar.Descripcion,
+                Balance = cuentaAEditar.Balance,
+                TipoCuentaID = cuentaAEditar.TipoCuentaID
+            };
+
+            modelo.TiposCuentas = await ObtenerTiposCuentas(usuarioID);
+
+            return View(modelo);
+        }
     }
 }
