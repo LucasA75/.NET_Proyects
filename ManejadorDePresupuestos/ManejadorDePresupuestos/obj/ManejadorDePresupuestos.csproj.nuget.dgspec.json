@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj": {}
+    "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj": {
+    "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj",
+        "projectUniqueName": "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj",
         "projectName": "ManejadorDePresupuestos",
-        "projectPath": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj",
-        "packagesPath": "C:\\Users\\GeoVictoria\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\obj\\",
+        "projectPath": "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\GeoVictoria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +44,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.1.24, )"
