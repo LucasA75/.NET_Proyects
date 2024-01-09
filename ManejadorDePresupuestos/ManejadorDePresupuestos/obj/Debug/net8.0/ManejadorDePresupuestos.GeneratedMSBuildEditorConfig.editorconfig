@@ -9,91 +9,99 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ManejadorDePresupuestos
 build_property.RootNamespace = ManejadorDePresupuestos
-build_property.ProjectDir = E:\Programacion\.NET_Proyects\ManejadorDePresupuestos\ManejadorDePresupuestos\
+build_property.ProjectDir = C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = E:\Programacion\.NET_Proyects\ManejadorDePresupuestos\ManejadorDePresupuestos
+build_property.MSBuildProjectDirectory = C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos
 build_property._RazorSourceGeneratorDebug = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Categorias/Borrar.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Categorias/Borrar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xCb3JyYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Categorias/Crear.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Categorias/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xDcmVhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Categorias/Editar.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Categorias/Editar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xFZGl0YXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Categorias/Index.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Categorias/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Cuentas/Borrar.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Cuentas/Borrar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhc1xCb3JyYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Cuentas/Crear.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Cuentas/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhc1xDcmVhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Cuentas/Editar.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Cuentas/Editar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhc1xFZGl0YXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Home/Index.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Home/NoEncontrado.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Home/NoEncontrado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb0VuY29udHJhZG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Home/Privacy.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Shared/Error.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/TipoCuentas/Borrar.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/TipoCuentas/Borrar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0N1ZW50YXNcQm9ycmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/TipoCuentas/Crear.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/TipoCuentas/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0N1ZW50YXNcQ3JlYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/TipoCuentas/Editar.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/TipoCuentas/Editar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0N1ZW50YXNcRWRpdGFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/TipoCuentas/index.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/TipoCuentas/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0N1ZW50YXNcaW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/_ViewImports.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Transacciones/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY2Npb25lc1xDcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Transacciones/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY2Npb25lc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/_ViewStart.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Cuentas/Index.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Cuentas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-c2thwp02b6
 
-[E:/Programacion/.NET_Proyects/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Shared/_Layout.cshtml]
+[C:/Users/GeoVictoria/Desktop/WORK/Programacion/ProyectosNET/ManejadorDePresupuestos/ManejadorDePresupuestos/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-8i806yorjo

@@ -138,3 +138,5 @@ E:\Programacion\.NET_Proyects\ManejadorDePresupuestos\ManejadorDePresupuestos\ob
 E:\Programacion\.NET_Proyects\ManejadorDePresupuestos\ManejadorDePresupuestos\obj\Debug\net8.0\ref\ManejadorDePresupuestos.dll
 E:\Programacion\.NET_Proyects\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\AutoMapper.dll
 E:\Programacion\.NET_Proyects\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

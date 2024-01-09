@@ -10,6 +10,7 @@ namespace ManejadorDePresupuestos.Services
 		Task Borrar(int id);
 		Task Crear(Categoria categoria);
         Task<IEnumerable<Categoria>> Obtener(int usuarioID);
+        Task<IEnumerable<Categoria>> Obtener(int usuarioID, TipoOperacion tipoOperacionID);
         Task<Categoria> ObtenerPorID(int id, int usuarioID);
     }
 
@@ -19,9 +20,7 @@ namespace ManejadorDePresupuestos.Services
 
         public RepositorioCategorias(IConfiguration configuration)
         {
-
             connectionString = configuration.GetConnectionString("DefaultConnection");
-
         }
 
         public async Task Crear(Categoria categoria)
@@ -40,6 +39,13 @@ namespace ManejadorDePresupuestos.Services
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryAsync<Categoria>("SELECT * FROM Categorias WHERE UsuarioID = @usuarioID", new { usuarioID });
+
+        }
+
+        public async Task<IEnumerable<Categoria>> Obtener(int usuarioID, TipoOperacion tipoOperacionID)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QueryAsync<Categoria>("SELECT * FROM Categorias WHERE UsuarioID = @usuarioID AND TipoOperacionID = @tipoOperacionID", new { usuarioID, tipoOperacionID });
 
         }
 
@@ -67,5 +73,5 @@ namespace ManejadorDePresupuestos.Services
             WHERE ID = @Id
             ", new {id});
 		}
-	}
+    }
 }

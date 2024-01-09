@@ -32,7 +32,6 @@ namespace ManejadorDePresupuestos.Services
                 "SELECT SCOPE_IDENTITY();", cuenta);
 
             cuenta.ID = id;
-
         }
 
         public async Task<IEnumerable<Cuenta>> Buscar(int usuarioID)
