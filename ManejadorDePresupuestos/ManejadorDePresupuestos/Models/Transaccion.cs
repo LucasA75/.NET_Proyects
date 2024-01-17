@@ -27,7 +27,7 @@ namespace ManejadorDePresupuestos.Models
         [Range(1, maximum: int.MaxValue, ErrorMessage = "Debes seleccionar una categoria ")]
         public int CategoriaID { get; set; }
 
-        public TipoOperacion TipoOperacion { get; set; } = TipoOperacion.Ingreso;
+        public TipoOperacion TipoOperacionID { get; set; } = TipoOperacion.Ingreso;
 
         public string Cuenta { get; set; }
         public string Categoria { get; set; }

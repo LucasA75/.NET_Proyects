@@ -45,7 +45,7 @@ namespace ManejadorDePresupuestos.Controllers
             var userID = servicioUsuarios.ObtenerUsuarioID();
             var transaccion = new TransaccionCreacionViewModel();
             transaccion.UsuarioID = userID;
-            transaccion.Categoria = await ObtenerCategoria(userID, transaccion.TipoOperacion);
+            transaccion.Categoria = await ObtenerCategoria(userID, transaccion.TipoOperacionID);
             transaccion.Cuenta = await this.ObtenerCuentas(userID);
            
             return View(transaccion);
@@ -58,7 +58,7 @@ namespace ManejadorDePresupuestos.Controllers
             var usuarioID = servicioUsuarios.ObtenerUsuarioID();
             transaccion.UsuarioID = usuarioID;
             if (!ModelState.IsValid) {
-                transaccion.Categoria = await ObtenerCategoria(usuarioID,transaccion.TipoOperacion);
+                transaccion.Categoria = await ObtenerCategoria(usuarioID,transaccion.TipoOperacionID);
                 transaccion.Cuenta = await ObtenerCuentas(usuarioID);
                 return View(transaccion); 
             }
@@ -69,7 +69,7 @@ namespace ManejadorDePresupuestos.Controllers
             var categoria = await repositorioCategorias.ObtenerPorID(transaccion.CategoriaID, usuarioID);
             if (categoria is null) { return RedirectToAction("NoEncontrado", "Home"); }
 
-            if(transaccion.TipoOperacion == TipoOperacion.Gasto)
+            if(transaccion.TipoOperacionID == TipoOperacion.Gasto)
             {
                 transaccion.Monto *= -1;
             }
@@ -91,7 +91,7 @@ namespace ManejadorDePresupuestos.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult> Editar(int id)
+        public async Task<ActionResult> Editar(int id, string urlRetorno = null)
         {
             var usuarioID = servicioUsuarios.ObtenerUsuarioID();
             var transacciones = await repositorioTransacciones.ObtenerTransaccionPorID(id,usuarioID);
@@ -105,13 +105,14 @@ namespace ManejadorDePresupuestos.Controllers
 
             modelo.MontoAnterior = modelo.Monto;
 
-            if(modelo.TipoOperacion == TipoOperacion.Gasto)
+            if(modelo.TipoOperacionID == TipoOperacion.Gasto)
             {
                 modelo.MontoAnterior = modelo.Monto * -1;
             }
 
+            modelo.UrlRetorno= urlRetorno;
 			modelo.CuentaIDAnterior = transacciones.CuentaID;
-            modelo.Categoria = await ObtenerCategoria(usuarioID, modelo.TipoOperacion);
+            modelo.Categoria = await ObtenerCategoria(usuarioID, modelo.TipoOperacionID);
             modelo.Cuenta = await ObtenerCuentas(usuarioID);
 
 
@@ -124,7 +125,7 @@ namespace ManejadorDePresupuestos.Controllers
 			var usuarioID = servicioUsuarios.ObtenerUsuarioID();
             if (!ModelState.IsValid)
             {
-				modelo.Categoria = await ObtenerCategoria(usuarioID, modelo.TipoOperacion);
+				modelo.Categoria = await ObtenerCategoria(usuarioID, modelo.TipoOperacionID);
 				modelo.Cuenta = await ObtenerCuentas(usuarioID);
                 return View(modelo);
 			}
@@ -143,14 +144,22 @@ namespace ManejadorDePresupuestos.Controllers
 
             var transaccion = mapper.Map<Transaccion>(modelo);
 
-            if (modelo.TipoOperacion == TipoOperacion.Gasto)
+            if (modelo.TipoOperacionID == TipoOperacion.Gasto)
             {
                 transaccion.Monto *= -1;
             }
 
             await repositorioTransacciones.Actualizar(modelo, modelo.MontoAnterior, modelo.CuentaIDAnterior);
 
+            if (string.IsNullOrEmpty(modelo.UrlRetorno))
+            {
             return RedirectToAction("Index");
+
+            }
+            else
+            {
+            return LocalRedirect(modelo.UrlRetorno);
+            }
 		}
 
 

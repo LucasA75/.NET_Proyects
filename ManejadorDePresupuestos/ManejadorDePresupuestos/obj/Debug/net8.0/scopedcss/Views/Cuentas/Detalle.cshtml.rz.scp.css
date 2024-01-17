@@ -1,0 +1,14 @@
+.contenedor-totales[b-b5l5u2znfh] {
+    display: flex;
+    justify-content: space-around;
+    font-size: 26px;
+    text-align: center;
+}
+
+.activos[b-b5l5u2znfh] {
+    color: darkblue;
+}
+
+.pasivos[b-b5l5u2znfh] {
+    color: darkred;
+}

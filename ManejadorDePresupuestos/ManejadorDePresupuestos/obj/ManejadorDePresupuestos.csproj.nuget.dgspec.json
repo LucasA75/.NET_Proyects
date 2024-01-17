@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj": {}
+    "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj": {}
   },
   "projects": {
-    "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj": {
+    "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj",
+        "projectUniqueName": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj",
         "projectName": "ManejadorDePresupuestos",
-        "projectPath": "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj",
-        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-        "outputPath": "E:\\Programacion\\.NET_Proyects\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\obj\\",
+        "projectPath": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\ManejadorDePresupuestos.csproj",
+        "packagesPath": "C:\\Users\\GeoVictoria\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GeoVictoria\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -76,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
