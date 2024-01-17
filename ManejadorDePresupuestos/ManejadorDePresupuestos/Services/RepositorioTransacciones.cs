@@ -10,7 +10,9 @@ namespace ManejadorDePresupuestos.Services
         Task Borrar(int transaccionID);
         Task<IEnumerable<Transaccion>> Buscar(int usuarioID);
         Task Crear(Transaccion transaccion);
-    }
+        Task<IEnumerable<Transaccion>> ObtenerPorCuentaID(ObtenerTransaccionesPorCuenta cuenta);
+        Task<Transaccion> ObtenerTransaccionPorID(int ID, int usuarioID);
+	}
     public class RepositorioTransacciones : IRepositorioTransacciones
     {
         private readonly string connection;
@@ -60,7 +62,7 @@ namespace ManejadorDePresupuestos.Services
             new { usuarioID, ID });
         }
 
-        public async Task Actualizar(Transaccion transaccion, decimal montoAnterior, int cuentaAnterior)
+        public async Task Actualizar(Transaccion transaccion, decimal montoAnterior, int cuentaIDAnterior)
         {
             using var connect = new SqlConnection(connection);
             await connect.ExecuteAsync(@"Transacciones_Actualizar", new
@@ -72,14 +74,28 @@ namespace ManejadorDePresupuestos.Services
                 transaccion.CuentaID,
                 transaccion.Nota,
                 montoAnterior,
-                cuentaAnterior
+                cuentaIDAnterior
             }, commandType: System.Data.CommandType.StoredProcedure);
         }
 
-        public async Task Borrar(int transaccionID)
+        public async Task<IEnumerable<Transaccion>> ObtenerPorCuentaID(ObtenerTransaccionesPorCuenta cuenta)
         {
             using var connect = new SqlConnection(connection);
-            await connect.ExecuteAsync(@"DELETE Transacciones WHERE id = @transaccionID", new { transaccionID });
+            return await connect.QueryAsync<Transaccion>(@"SELECT t.id, t.Monto, t.FechaTransaccion, ct.Nombre as Categoria, cu.Nombre as Cuenta,
+                ct.TipoOperacionID
+                FROM Transacciones t
+                INNER JOIN Categorias ct
+                ON ct.ID = t.CategoriaID
+                INNER JOIN Cuentas cu
+                ON cu.ID = t.CuentaID
+                WHERE t.CuentaID = @CuentaID AND t.UsuarioID = @UsuarioID 
+                AND FechaTransaccion Between @FechaInicio AND @FechaFin",cuenta);
+        }
+
+        public async Task Borrar(int ID)
+        {
+            using var connect = new SqlConnection(connection);
+            await connect.ExecuteAsync(@"Transacciones_Borrar", new { ID },commandType: System.Data.CommandType.StoredProcedure);
         }
     }
 }
