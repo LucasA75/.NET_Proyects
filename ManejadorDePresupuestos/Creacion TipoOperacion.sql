@@ -19,7 +19,7 @@ SELECT SCOPE_IDENTITY();
       ORDER BY TipoCuenta.Orden
 
 
-SELECT tr.* , Categorias.Nombre
+SELECT tr.* , Categorias.TipoOperacionID
 FROM Transacciones tr
 INNER JOIN Categorias
 ON tr.CategoriaID = Categorias.ID

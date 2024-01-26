@@ -50,7 +50,7 @@ namespace ManejadorDePresupuestos.Services
         {
             using var connect = new SqlConnection(connection);
             return await connect.QueryFirstOrDefaultAsync<Cuenta>(@"
-            SELECT Cuentas.ID, Cuentas.Nombre, Cuentas.Balance, TipoCuenta.Nombre AS TipoCuenta, descripcion
+            SELECT Cuentas.ID, Cuentas.Nombre, Cuentas.Balance, TipoCuenta.Nombre AS TipoCuenta, descripcion, TipoCuentaID
             FROM Cuentas
             INNER JOIN TipoCuenta
             ON TipoCuenta.ID = Cuentas.TipoCuentaID

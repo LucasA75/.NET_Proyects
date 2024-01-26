@@ -13,14 +13,16 @@ namespace ManejadorDePresupuestos.Controllers
         private readonly IRepositorioCuentas repositorioCuentas;
         private readonly IMapper mapper;
         private readonly IRepositorioTransacciones repositorioTransacciones;
+        private readonly IServicioReportes servicioReportes;
 
-        public CuentasController(IRepositorioTipoCuentas repositorioTipoCuentas, IServicioUsuarios servicioUsuarios,IRepositorioCuentas repositorioCuentas,IMapper mapper, IRepositorioTransacciones repositorioTransacciones)
+        public CuentasController(IRepositorioTipoCuentas repositorioTipoCuentas, IServicioUsuarios servicioUsuarios,IRepositorioCuentas repositorioCuentas,IMapper mapper, IRepositorioTransacciones repositorioTransacciones, IServicioReportes servicioReportes)
         {
             this.repositorioTipoCuentas = repositorioTipoCuentas;
             this.servicioUsuarios = servicioUsuarios;
             this.repositorioCuentas = repositorioCuentas;
             this.mapper = mapper;
             this.repositorioTransacciones = repositorioTransacciones;
+            this.servicioReportes = servicioReportes;
         }
 
         [HttpGet]
@@ -44,54 +46,11 @@ namespace ManejadorDePresupuestos.Controllers
                 return RedirectToAction("NoEncontrado", "Home");
             }
 
-            DateTime fechaInicio;
-            DateTime fechaFin;
-
-            if(mes <= 0 || mes > 12 || ano <= 1900)
-            {
-                var hoy = DateTime.Today;
-                fechaInicio = new DateTime(hoy.Year, hoy.Month, 1);
-            }
-            else
-            {
-                fechaInicio = new DateTime(ano, mes, 1);
-            }
-
-            fechaFin = fechaInicio.AddMonths(1).AddDays(-1);
-
-            var obtenerTransaccionesPorCuenta = new ObtenerTransaccionesPorCuenta()
-            {
-                CuentaID = id,
-                UsuarioID = usuarioID,
-                FechaFinal = fechaFin,
-                FechaInicio = fechaInicio,
-            };
-
-            var transacciones = await repositorioTransacciones.ObtenerPorCuentaID(obtenerTransaccionesPorCuenta);
-
-            var modelo = new ReporteTransaccionesDetalladas();
-
             ViewBag.Cuenta = cuenta.Nombre;
 
-            var transaccionesPorFecha = transacciones.OrderByDescending(x => x.FechaTransaccion)
-                .GroupBy(x => x.FechaTransaccion)
-                .Select(grupo => new ReporteTransaccionesDetalladas.TransaccionesPorFecha()
-                {
-                    fechaTransaccion = grupo.Key,
-                    Transacciones = grupo.AsEnumerable(),
-                });
+            var modelo = await servicioReportes.ObtenerTransaccionesDetalladasPorCuenta(usuarioID, id, mes, ano, ViewBag);
 
-            modelo.TransaccionesAgrupadas = transaccionesPorFecha;
-            modelo.FechaInicio = fechaInicio;
-            modelo.FechaFin = fechaFin;
-
-            ViewBag.anoAnterior = fechaInicio.AddMonths(-1).Year;
-            ViewBag.mesAnterior = fechaInicio.AddMonths(-1).Month;
-            ViewBag.anoPosterior = fechaInicio.AddMonths(1).Year;
-            ViewBag.mesPosterior = fechaInicio.AddMonths(1).Month;
-
-            ViewBag.urlRetorno = HttpContext.Request.Path + HttpContext.Request.QueryString;
-
+          
             return View(modelo);
 
         }

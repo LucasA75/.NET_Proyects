@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Editar Transaccion";
+    var linkCancelar = Model.UrlRetorno ?? Url.Action("Index");
 }
 
 <h1>Editar Transaccion</h1>
@@ -51,7 +52,7 @@
 
     <button type="submit" class="btn btn-primary">Actualizar</button>
     <button type="submit" class="btn btn-danger" asp-action="Borrar">Borrar</button>
-    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+    <a class="btn btn-secondary" href="@linkCancelar">Cancelar</a>
 </form>
 
 @section Scripts {

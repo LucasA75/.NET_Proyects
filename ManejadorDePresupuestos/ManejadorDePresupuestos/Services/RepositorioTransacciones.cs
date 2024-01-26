@@ -11,8 +11,10 @@ namespace ManejadorDePresupuestos.Services
         Task<IEnumerable<Transaccion>> Buscar(int usuarioID);
         Task Crear(Transaccion transaccion);
         Task<IEnumerable<Transaccion>> ObtenerPorCuentaID(ObtenerTransaccionesPorCuenta cuenta);
+        Task<IEnumerable<ResultadoObtenerPorSemana>> ObtenerPorSemana(ParametroObtenerTransaccionesPorUsuario cuenta);
+        Task<IEnumerable<Transaccion>> ObtenerPorUsuarioID(ParametroObtenerTransaccionesPorUsuario cuenta);
         Task<Transaccion> ObtenerTransaccionPorID(int ID, int usuarioID);
-	}
+    }
     public class RepositorioTransacciones : IRepositorioTransacciones
     {
         private readonly string connection;
@@ -92,10 +94,41 @@ namespace ManejadorDePresupuestos.Services
                 AND FechaTransaccion Between @FechaInicio AND @FechaFinal", cuenta);
         }
 
-        public async Task Borrar(int ID)
+        public async Task<IEnumerable<Transaccion>> ObtenerPorUsuarioID(ParametroObtenerTransaccionesPorUsuario cuenta)
         {
             using var connect = new SqlConnection(connection);
-            await connect.ExecuteAsync(@"Transacciones_Borrar", new { ID },commandType: System.Data.CommandType.StoredProcedure);
+            return await connect.QueryAsync<Transaccion>(@"SELECT t.id, t.Monto, t.FechaTransaccion, ct.Nombre as Categoria, cu.Nombre as Cuenta,
+                ct.TipoOperacionID 
+                FROM Transacciones t
+                INNER JOIN Categorias ct
+                ON ct.ID = t.CategoriaID
+                INNER JOIN Cuentas cu
+                ON cu.ID = t.CuentaID
+                WHERE t.UsuarioID = @UsuarioID 
+                AND FechaTransaccion Between @FechaInicio AND @FechaFinal
+                ORDER BY t.FechaTransaccion DESC
+                ", cuenta);
+
+        }
+
+        public async Task<IEnumerable<ResultadoObtenerPorSemana>> ObtenerPorSemana(ParametroObtenerTransaccionesPorUsuario cuenta)
+        {
+            using var connect = new SqlConnection(connection);
+            return await connect.QueryAsync<ResultadoObtenerPorSemana>(@"
+                SELECT datediff(d,@fechaInicio,FechaTransaccion) / 7 + 1 as Semana, Sum(Monto) as Monto, ct.TipoOperacionID
+                From Transacciones
+                INNER JOIN Categorias ct
+                ON ct.ID = Transacciones.CategoriaID
+                Where Transacciones.UsuarioID = @UsuarioID AND
+                FechaTransaccion Between @fechaInicio and @fechaFinal
+                Group BY datediff(d,@fechaInicio,FechaTransaccion) / 7, ct.TipoOperacionID
+                ", cuenta);
+        }
+
+            public async Task Borrar(int ID)
+        {
+            using var connect = new SqlConnection(connection);
+            await connect.ExecuteAsync(@"Transacciones_Borrar", new { ID }, commandType: System.Data.CommandType.StoredProcedure);
         }
     }
 }
