@@ -42,12 +42,108 @@ namespace ManejadorDePresupuestos.Controllers
         }
         public async Task<ActionResult> Semanal(int mes,int ano)
         {
+            var usuarioID = servicioUsuarios.ObtenerUsuarioID();
+            IEnumerable<ResultadoObtenerPorSemana> transaccionesPorSemana = 
+                await servicioReportes.ObtenerReporteSemanal(usuarioID,mes,ano,ViewBag);
+            
+            var agrupado = transaccionesPorSemana.GroupBy(x=> x.Semana).Select(x => new ResultadoObtenerPorSemana()
+            {
+                Semana = x.Key,
+                Ingresos = x.Where(x=>x.TipoOperacionID == TipoOperacion.Ingreso).Select(x =>x.Monto).FirstOrDefault(),
+                Gastos = x.Where(x=>x.TipoOperacionID == TipoOperacion.Gasto).Select(x =>x.Monto).FirstOrDefault(),
 
-            return View();
+            }).ToList();
+
+            if(ano == 0 || mes == 0)
+            {
+                var hoy = DateTime.Today;
+                ano = hoy.Year;
+                mes = hoy.Month;
+            }
+
+            var fechaReferencia = new DateTime(ano, mes, 1);
+            var diasDelMes = Enumerable.Range(1, fechaReferencia.AddMonths(1).AddDays(-1).Day);
+
+            var diasSegmentados = diasDelMes.Chunk(7).ToList();
+
+            for(int i = 0; i < diasSegmentados.Count(); i++)
+            {
+                var semana = i + 1;
+                var fechaInicio = new DateTime(ano, mes, diasSegmentados[i].First());
+                var fechaFin = new DateTime(ano, mes, diasSegmentados[i].Last());
+                var grupoSemana = agrupado.FirstOrDefault(x => x.Semana == semana);
+
+                if(grupoSemana == null)
+                {
+                    agrupado.Add(new ResultadoObtenerPorSemana()
+                    {
+                        Semana = semana,
+                        FechaInicio = fechaInicio,
+                        FechaFin = fechaFin,
+
+                    });
+                }
+                else
+                {
+                    grupoSemana.FechaInicio = fechaInicio;
+                    grupoSemana.FechaFin = fechaFin;
+                }
+            }
+
+            agrupado = agrupado.OrderByDescending(x => x.Semana).ToList();
+
+            var modelo = new ReporteSemanalViewModel();
+            modelo.TransaccionesPorSemana = agrupado;
+            modelo.FechaReferencia = fechaReferencia;
+
+
+            return View(modelo);
         }
-        public async Task<ActionResult> Mensual(int id)
+        public async Task<ActionResult> Mensual(int ano)
         {
-            return View();
+            var usuarioID = servicioUsuarios.ObtenerUsuarioID();
+            if (ano == 0)
+            {
+                ano = DateTime.Today.Year;
+            }
+
+            var transaccionesPorMes = await repositorioTransacciones.ObtenerPorMes(usuarioID, ano);
+
+            var transaccionesAgrupadas = transaccionesPorMes.GroupBy(x => x.Mes)
+                .Select(x => new ResultadoObtenerPorMes()
+                {
+                    Mes = x.Key,
+                    Ingreso = x.Where(x => x.TipoOperacionID == TipoOperacion.Ingreso).Select(x => x.Monto).FirstOrDefault(),
+                    Gasto = x.Where(x => x.TipoOperacionID == TipoOperacion.Gasto).Select(x => x.Monto).FirstOrDefault(),
+
+                }).ToList();
+
+            for(int mes = 12; mes <=12; mes++)
+            {
+                var transaccion = transaccionesAgrupadas.FirstOrDefault(x=> x.Mes == mes);
+                var fechaReferencia = new DateTime(ano, mes, 1);
+                if(transaccion is null)
+                {
+                    transaccionesAgrupadas.Add(new ResultadoObtenerPorMes()
+                    {
+                        Mes = mes,
+                        FechaReferencia = fechaReferencia,
+
+                    });
+                }
+                else
+                {
+                    transaccion.FechaReferencia = fechaReferencia;
+                }
+            }
+
+            transaccionesAgrupadas = transaccionesAgrupadas.OrderByDescending(x => x.Mes).ToList();
+
+            var modelo = new ReporteMensualViewModel();
+            modelo.Ano = ano;
+            modelo.TransaccionesPorMes = transaccionesAgrupadas;
+
+            return View(modelo);
         }
         public async Task<ActionResult> ReporteExcel(int id)
         {

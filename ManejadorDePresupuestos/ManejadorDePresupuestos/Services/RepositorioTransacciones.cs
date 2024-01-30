@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using AutoMapper.Configuration.Conventions;
+using Dapper;
 using ManejadorDePresupuestos.Models;
 using Microsoft.Data.SqlClient;
 
@@ -11,6 +12,7 @@ namespace ManejadorDePresupuestos.Services
         Task<IEnumerable<Transaccion>> Buscar(int usuarioID);
         Task Crear(Transaccion transaccion);
         Task<IEnumerable<Transaccion>> ObtenerPorCuentaID(ObtenerTransaccionesPorCuenta cuenta);
+        Task<IEnumerable<ResultadoObtenerPorMes>> ObtenerPorMes(int usuarioID, int ano);
         Task<IEnumerable<ResultadoObtenerPorSemana>> ObtenerPorSemana(ParametroObtenerTransaccionesPorUsuario cuenta);
         Task<IEnumerable<Transaccion>> ObtenerPorUsuarioID(ParametroObtenerTransaccionesPorUsuario cuenta);
         Task<Transaccion> ObtenerTransaccionPorID(int ID, int usuarioID);
@@ -22,6 +24,18 @@ namespace ManejadorDePresupuestos.Services
         public RepositorioTransacciones(IConfiguration configuration)
         {
             connection = configuration.GetConnectionString("DefaultConnection");
+        }
+
+        public async Task<IEnumerable<ResultadoObtenerPorMes>> ObtenerPorMes(int usuarioID, int ano)
+        {
+            using var connect = new SqlConnection(connection);
+            return await connect.QueryAsync<ResultadoObtenerPorMes>(@"SELECT MONTH(FechaTransaccion) as Mes, SUM(Monto) as Monto, cat.TipoOperacionID 
+                    FROM Transacciones
+                    INNER JOIN Categorias cat
+                    ON cat.ID = Transacciones.CategoriaID
+                    WHERE Transacciones.UsuarioID = @UsuarioID AND Year(FechaTransaccion) = @ano
+                    GROUP BY MONTH(FechaTransaccion), cat.TipoOperacionID", new {usuarioID, ano});
+
         }
 
         public async Task Crear(Transaccion transaccion)
@@ -125,7 +139,7 @@ namespace ManejadorDePresupuestos.Services
                 ", cuenta);
         }
 
-            public async Task Borrar(int ID)
+        public async Task Borrar(int ID)
         {
             using var connect = new SqlConnection(connection);
             await connect.ExecuteAsync(@"Transacciones_Borrar", new { ID }, commandType: System.Data.CommandType.StoredProcedure);

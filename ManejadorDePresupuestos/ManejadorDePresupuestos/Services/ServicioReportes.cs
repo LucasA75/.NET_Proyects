@@ -4,6 +4,7 @@ namespace ManejadorDePresupuestos.Services
 {
     public interface IServicioReportes
     {
+        Task<IEnumerable<ResultadoObtenerPorSemana>> ObtenerReporteSemanal(int usuarioID, int mes, int ano, dynamic viewBag);
         Task<ReporteTransaccionesDetalladas> ObtenerReporteTransaccionesDetalladas(int usuarioID, int mes, int ano, dynamic viewBag);
         Task<ReporteTransaccionesDetalladas> ObtenerTransaccionesDetalladasPorCuenta(int usuarioID, int cuentaID, int mes, int ano, dynamic viewBag);
     }
