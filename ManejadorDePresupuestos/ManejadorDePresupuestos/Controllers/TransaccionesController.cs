@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using ClosedXML.Excel;
 using ManejadorDePresupuestos.Models;
 using ManejadorDePresupuestos.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using System.Reflection;
 
 namespace ManejadorDePresupuestos.Controllers
@@ -40,21 +42,21 @@ namespace ManejadorDePresupuestos.Controllers
             var modelo = await servicioReportes.ObtenerReporteTransaccionesDetalladas(usuarioID, mes, ano, ViewBag);
             return View(modelo);
         }
-        public async Task<ActionResult> Semanal(int mes,int ano)
+        public async Task<ActionResult> Semanal(int mes, int ano)
         {
             var usuarioID = servicioUsuarios.ObtenerUsuarioID();
-            IEnumerable<ResultadoObtenerPorSemana> transaccionesPorSemana = 
-                await servicioReportes.ObtenerReporteSemanal(usuarioID,mes,ano,ViewBag);
-            
-            var agrupado = transaccionesPorSemana.GroupBy(x=> x.Semana).Select(x => new ResultadoObtenerPorSemana()
+            IEnumerable<ResultadoObtenerPorSemana> transaccionesPorSemana =
+                await servicioReportes.ObtenerReporteSemanal(usuarioID, mes, ano, ViewBag);
+
+            var agrupado = transaccionesPorSemana.GroupBy(x => x.Semana).Select(x => new ResultadoObtenerPorSemana()
             {
                 Semana = x.Key,
-                Ingresos = x.Where(x=>x.TipoOperacionID == TipoOperacion.Ingreso).Select(x =>x.Monto).FirstOrDefault(),
-                Gastos = x.Where(x=>x.TipoOperacionID == TipoOperacion.Gasto).Select(x =>x.Monto).FirstOrDefault(),
+                Ingresos = x.Where(x => x.TipoOperacionID == TipoOperacion.Ingreso).Select(x => x.Monto).FirstOrDefault(),
+                Gastos = x.Where(x => x.TipoOperacionID == TipoOperacion.Gasto).Select(x => x.Monto).FirstOrDefault(),
 
             }).ToList();
 
-            if(ano == 0 || mes == 0)
+            if (ano == 0 || mes == 0)
             {
                 var hoy = DateTime.Today;
                 ano = hoy.Year;
@@ -66,14 +68,14 @@ namespace ManejadorDePresupuestos.Controllers
 
             var diasSegmentados = diasDelMes.Chunk(7).ToList();
 
-            for(int i = 0; i < diasSegmentados.Count(); i++)
+            for (int i = 0; i < diasSegmentados.Count(); i++)
             {
                 var semana = i + 1;
                 var fechaInicio = new DateTime(ano, mes, diasSegmentados[i].First());
                 var fechaFin = new DateTime(ano, mes, diasSegmentados[i].Last());
                 var grupoSemana = agrupado.FirstOrDefault(x => x.Semana == semana);
 
-                if(grupoSemana == null)
+                if (grupoSemana == null)
                 {
                     agrupado.Add(new ResultadoObtenerPorSemana()
                     {
@@ -118,11 +120,11 @@ namespace ManejadorDePresupuestos.Controllers
 
                 }).ToList();
 
-            for(int mes = 12; mes <=12; mes++)
+            for (int mes = 1; mes <= 12; mes++)
             {
-                var transaccion = transaccionesAgrupadas.FirstOrDefault(x=> x.Mes == mes);
+                var transaccion = transaccionesAgrupadas.FirstOrDefault(x => x.Mes == mes);
                 var fechaReferencia = new DateTime(ano, mes, 1);
-                if(transaccion is null)
+                if (transaccion is null)
                 {
                     transaccionesAgrupadas.Add(new ResultadoObtenerPorMes()
                     {
@@ -149,9 +151,141 @@ namespace ManejadorDePresupuestos.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<FileResult> ExportarExcelPorAno(int ano)
+        {
+            var fechaInicio = new DateTime(ano, 1, 1);
+            var fechaFinal = fechaInicio.AddYears(1).AddDays(-1);
+            var usuarioID = servicioUsuarios.ObtenerUsuarioID();
+
+            var transacciones = await repositorioTransacciones.ObtenerPorUsuarioID(new ParametroObtenerTransaccionesPorUsuario()
+            {
+                FechaFinal = fechaFinal,
+                FechaInicio = fechaInicio,
+                usuarioID = usuarioID
+            });
+
+            var nombreArchivo = $"Manejo Presupuesto - {fechaInicio.ToString("yyyy")}.xlsx";
+            return GenerarExcel(nombreArchivo, transacciones);
+        }
+
+        [HttpGet]
+        public async Task<FileResult> ExportarExcelTodo()
+        {
+            var fechaInicio = DateTime.Today.AddYears(-100);
+            var fechaFinal = fechaInicio.AddYears(1000);
+            var usuarioID = servicioUsuarios.ObtenerUsuarioID();
+
+            var transacciones = await repositorioTransacciones.ObtenerPorUsuarioID(new ParametroObtenerTransaccionesPorUsuario()
+            {
+                FechaFinal = fechaFinal,
+                FechaInicio = fechaInicio,
+                usuarioID = usuarioID
+            });
+
+            var nombreArchivo = $"Manejo Presupuestos - {DateTime.Today.ToString("dd-MM-yyyy")}.xlsx";
+            return GenerarExcel(nombreArchivo, transacciones);
+        }
+
+
+
+        [HttpGet]
+        public async Task<FileResult> ExportarExcelPorMes(int mes, int ano)
+        {
+            var fechaInicio = new DateTime(ano, mes, 1);
+            var fechaFinal = fechaInicio.AddMonths(1).AddDays(-1);
+            var usuarioID = servicioUsuarios.ObtenerUsuarioID();
+
+            var transacciones = await repositorioTransacciones.ObtenerPorUsuarioID(new ParametroObtenerTransaccionesPorUsuario()
+            {
+                FechaFinal = fechaFinal,
+                FechaInicio = fechaInicio,
+                usuarioID = usuarioID
+            });
+
+            var nombreArchivo = $"Manejo Presupuesto - {fechaInicio.ToString("MMM yyyy")}.xlsx";
+            return GenerarExcel(nombreArchivo,transacciones);
+        }
+
+        public FileResult GenerarExcel(string nombreArchivo, IEnumerable<Transaccion> transacciones)
+        {
+            DataTable dataTable = new DataTable("Transacciones");
+            dataTable.Columns.AddRange(new DataColumn[]
+            {
+                new DataColumn("Fecha"),
+                new DataColumn("Cuenta"),
+                new DataColumn("Categoria"),
+                new DataColumn("Nota"),
+                new DataColumn("Monto"),
+                new DataColumn("Ingreso/Gasto"),
+            });
+
+            foreach (var transaccion in transacciones)
+            {
+                dataTable.Rows.Add(
+                    transaccion.FechaTransaccion,
+                    transaccion.Cuenta,
+                    transaccion.Categoria,
+                    transaccion.Nota,
+                    transaccion.Monto,
+                    transaccion.TipoOperacionID
+                       );
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dataTable);
+
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(),
+                                "application/vnd.openxmlformats-officedocument.spreadsheetsml.sheet",
+                                nombreArchivo);
+                }
+
+            }
+
+        }
+
         public async Task<ActionResult> Calendario(int id)
         {
             return View();
+        }
+
+        public async Task<JsonResult> ObtenerTransaccionesCalendario(DateTime start, DateTime end)
+        {
+            var usuarioID = servicioUsuarios.ObtenerUsuarioID();
+            var transacciones = await repositorioTransacciones.ObtenerPorUsuarioID(new ParametroObtenerTransaccionesPorUsuario()
+            {
+                FechaInicio = start,
+                FechaFinal = end,
+                usuarioID = usuarioID
+            });
+
+            var eventosCalendario = transacciones.Select(transaccion => new EventoCalendario()
+            {
+               Title = transaccion.Monto.ToString("N"),
+               Start = transaccion.FechaTransaccion.ToString("yyyy-MM-dd"),
+               End = transaccion.FechaTransaccion.ToString("yyyy-MM-dd"),
+               Color = (transaccion.TipoOperacionID == TipoOperacion.Ingreso ? "blue": "red")
+            });
+            return Json(eventosCalendario);
+        }
+
+        public async Task<JsonResult> ObtenerTransaccionesPorFecha(DateTime fecha)
+        {
+            var usuarioID = servicioUsuarios.ObtenerUsuarioID();
+            var transacciones = await repositorioTransacciones.ObtenerPorUsuarioID(new ParametroObtenerTransaccionesPorUsuario()
+            {
+                FechaInicio = fecha,
+                FechaFinal = fecha,
+                usuarioID = usuarioID
+            });
+
+            return Json(transacciones);
+
         }
 
         public async Task<ActionResult> Crear()

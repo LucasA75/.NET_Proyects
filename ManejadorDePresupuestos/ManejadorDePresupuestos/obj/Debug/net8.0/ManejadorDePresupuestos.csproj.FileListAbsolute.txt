@@ -141,3 +141,10 @@ E:\Programacion\.NET_Proyects\ManejadorDePresupuestos\ManejadorDePresupuestos\bi
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\obj\Debug\net8.0\scopedcss\Views\Cuentas\Detalle.cshtml.rz.scp.css
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\Irony.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\ManejadorDePresupuestos\ManejadorDePresupuestos\bin\Debug\net8.0\XLParser.dll

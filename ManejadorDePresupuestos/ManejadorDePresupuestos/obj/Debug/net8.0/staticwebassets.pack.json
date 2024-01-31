@@ -205,6 +205,14 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
+      "Id": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\wwwroot\\lib\\full-calendar\\main.min.css",
+      "PackagePath": "staticwebassets\\lib\\full-calendar\\main.min.css"
+    },
+    {
+      "Id": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\wwwroot\\lib\\full-calendar\\main.min.js",
+      "PackagePath": "staticwebassets\\lib\\full-calendar\\main.min.js"
+    },
+    {
       "Id": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\ManejadorDePresupuestos\\ManejadorDePresupuestos\\wwwroot\\lib\\jquery-ui\\AUTHORS.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-ui\\AUTHORS.txt"
     },
