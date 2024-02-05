@@ -24,7 +24,7 @@ namespace ManejadorDePresupuestos.Models
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+
         }
 
         public async Task<Usuario> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
@@ -37,9 +37,9 @@ namespace ManejadorDePresupuestos.Models
             throw new NotImplementedException();
         }
 
-        public Task<Usuario> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public async Task<Usuario> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await repositorioUsuarios.BuscarUsuarioPorEmail(normalizedUserName);
         }
 
         public Task<string> GetEmailAsync(Usuario user, CancellationToken cancellationToken)

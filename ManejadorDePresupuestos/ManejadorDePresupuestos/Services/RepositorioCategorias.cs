@@ -8,8 +8,9 @@ namespace ManejadorDePresupuestos.Services
     {
         Task Actualizar(Categoria categoria);
 		Task Borrar(int id);
-		Task Crear(Categoria categoria);
-        Task<IEnumerable<Categoria>> Obtener(int usuarioID);
+        Task<int> Contar(int UsuarioID);
+        Task Crear(Categoria categoria);
+        Task<IEnumerable<Categoria>> Obtener(int usuarioID, PaginacionViewModel paginacion);
         Task<IEnumerable<Categoria>> Obtener(int usuarioID, TipoOperacion tipoOperacionID);
         Task<Categoria> ObtenerPorID(int id, int usuarioID);
     }
@@ -35,11 +36,24 @@ namespace ManejadorDePresupuestos.Services
             categoria.Id = id;
         }
 
-        public async Task<IEnumerable<Categoria>> Obtener(int usuarioID)
+        public async Task<IEnumerable<Categoria>> Obtener(int usuarioID, PaginacionViewModel paginacion)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<Categoria>("SELECT * FROM Categorias WHERE UsuarioID = @usuarioID", new { usuarioID });
+            return await connection.QueryAsync<Categoria>(@$"
+                        SELECT * FROM Categorias WHERE UsuarioID = @usuarioID
+                        ORDER BY Nombre
+                        OFFSET {paginacion.RecordASaltar} ROWS FETCH NEXT {paginacion.RecordsPorPagina}
+                        ROWS ONLY", 
+                        new { usuarioID });
 
+        }
+
+        public async Task<int> Contar(int UsuarioID)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.ExecuteScalarAsync<int>(@"
+            SELECT COUNT(*) FROM Categorias WHERE UsuarioID = @UsuarioID
+            ", new { UsuarioID });
         }
 
         public async Task<IEnumerable<Categoria>> Obtener(int usuarioID, TipoOperacion tipoOperacionID)

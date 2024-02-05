@@ -32,12 +32,23 @@ namespace ManejadorDePresupuestos.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(PaginacionViewModel paginacion)
         {
             var usuarioID = servicioUsuarios.ObtenerUsuarioID();
-            var categorias = await repositorioCategoria.Obtener(usuarioID);
+            var categorias = await repositorioCategoria.Obtener(usuarioID, paginacion);
+            var totalCategorias = await repositorioCategoria.Contar(usuarioID);
 
-            return View(categorias);
+            var respuestaVM = new PaginacionRespuesta<Categoria>()
+            {
+                Elementos = categorias,
+                Pagina = paginacion.Pagina,
+                RecordsPorPagina= paginacion.RecordsPorPagina,
+                CantidadTotalRecords=totalCategorias,
+                BaseURL= Url.Action()
+
+            };
+
+            return View(respuestaVM);
         }
 
 		public async Task<IActionResult> Editar(int id)

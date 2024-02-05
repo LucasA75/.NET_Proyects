@@ -11,7 +11,7 @@ namespace ManejadorDePresupuestos.Models
         [StringLength (50,MinimumLength = 3,ErrorMessage ="Longitud de {0} no esta entre {2} y {1}")]
         [Display(Name = "Nombre tipo de cuenta")]
         [PrimeraLetraMayuscula]
-        [Remote(controller: "TipoCuentas", action: "ExistsTipoCuenta")]
+        [Remote(controller: "TipoCuentas", action: "ExistsTipoCuenta",AdditionalFields ="ID")]
         public string Nombre { get; set; }
         public int UsuarioID { get; set; }
         public int Orden { get; set; }

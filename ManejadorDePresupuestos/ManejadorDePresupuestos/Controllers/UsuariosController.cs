@@ -1,92 +1,98 @@
 ﻿using ManejadorDePresupuestos.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Security.Claims;
 
 namespace ManejadorDePresupuestos.Controllers
 {
     public class UsuariosController : Controller
     {
-        // GET: UsuariosController
+        private readonly UserManager<Usuario> userManager;
+        private readonly SignInManager<Usuario> signInManager;
+
+        public UsuariosController(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager)
+        {
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+        }
+
         public ActionResult Index()
         {
             return View();
         }
-
-        // GET: UsuariosController/Details/5
+        [AllowAnonymous]
         public ActionResult Registro()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Registro(RegistroViewModel model)
         {
             if (!ModelState.IsValid) { return View(model); }
             
+            var usuario = new Usuario() { Email = model.Email };
+
+            var resultado = await userManager.CreateAsync(usuario,password: model.Password);
+
+            if (resultado.Succeeded)
+            {
+                await signInManager.SignInAsync(usuario, isPersistent: true);
             return RedirectToAction("Index", "Transacciones");
+            }
+            else
+            {
+                foreach (var error in resultado.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(model);
+            }
         }
 
-        // GET: UsuariosController/Create
-        public ActionResult Create()
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var resultado = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.Remember,lockoutOnFailure:false);
+
+
+
+            if (resultado.Succeeded) {
+                return RedirectToAction("Index", "Transacciones");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Nombre de usuario o contraseña incorrecto.");
+                return View(model);
+
+            }
+            
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> Login()
+        { 
+
             return View();
         }
 
-        // POST: UsuariosController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Logout()
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: UsuariosController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: UsuariosController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: UsuariosController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: UsuariosController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+            return RedirectToAction("Index", "Transacciones");
         }
     }
 }

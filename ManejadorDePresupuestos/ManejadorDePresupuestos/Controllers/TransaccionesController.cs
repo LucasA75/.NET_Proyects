@@ -2,6 +2,7 @@
 using ClosedXML.Excel;
 using ManejadorDePresupuestos.Models;
 using ManejadorDePresupuestos.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -36,6 +37,7 @@ namespace ManejadorDePresupuestos.Controllers
             this.mapper = mapper;
         }
 
+        [Authorize]
         public async Task<ActionResult> Index(int mes, int ano)
         {
             var usuarioID = servicioUsuarios.ObtenerUsuarioID();
@@ -295,6 +297,7 @@ namespace ManejadorDePresupuestos.Controllers
             transaccion.UsuarioID = userID;
             transaccion.Categoria = await ObtenerCategoria(userID, transaccion.TipoOperacionID);
             transaccion.Cuenta = await this.ObtenerCuentas(userID);
+            
 
             return View(transaccion);
         }
@@ -330,13 +333,19 @@ namespace ManejadorDePresupuestos.Controllers
         private async Task<IEnumerable<SelectListItem>> ObtenerCuentas(int id)
         {
             var cuentas = await repositorioCuentas.Buscar(id);
-            return cuentas.Select(x => new SelectListItem(x.Nombre, x.ID.ToString()));
+            return  cuentas.Select(x => new SelectListItem(x.Nombre, x.ID.ToString()));
+
         }
         private async Task<IEnumerable<SelectListItem>> ObtenerCategoria(int usuarioID, TipoOperacion tipoOperacion)
         {
             var categoria = await repositorioCategorias.Obtener(usuarioID, tipoOperacion);
-            return categoria.Select(x => new SelectListItem(x.Nombre, x.Id.ToString()));
-        }
+            
+            var categoriaList = categoria.Select(x => new SelectListItem(x.Nombre, x.Id.ToString())).ToList();
+            categoriaList.Insert(0, new SelectListItem("-- Selecciona una categoria","0",true));
+
+            return categoriaList;
+
+		}
 
 
         [HttpGet]
