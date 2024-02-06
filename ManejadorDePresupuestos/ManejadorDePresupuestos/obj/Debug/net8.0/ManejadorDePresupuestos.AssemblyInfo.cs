@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ManejadorDePresupuestos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4181ab3ec226c2ce23ac9bbc16f7980aa4f9f4a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a29bc7c79f706b779aa04d3f16d96352e7e01ec0")]
 [assembly: System.Reflection.AssemblyProductAttribute("ManejadorDePresupuestos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ManejadorDePresupuestos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
