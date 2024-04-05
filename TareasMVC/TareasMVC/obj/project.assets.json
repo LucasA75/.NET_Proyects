@@ -59,6 +59,22 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.MicrosoftAccount/8.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/8.0.1": {
         "type": "package",
         "compile": {
@@ -1617,6 +1633,21 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.MicrosoftAccount/8.0.3": {
+      "sha512": "/YpivbZ0a9Ycwq4MneSqo2/OwnVL7iiinl8Qpt2Q9pnHkhe6UArrdjaGabAYy1CGGi+i7SLSx9vD5FeDd9aG1w==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.microsoftaccount/8.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net8.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.xml",
+        "microsoft.aspnetcore.authentication.microsoftaccount.8.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.microsoftaccount.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/8.0.1": {
@@ -4183,14 +4214,14 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Microsoft.AspNetCore.Authentication.MicrosoftAccount >= 8.0.3",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.1",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GeoVictoria\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\GeoVictoria\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -4201,12 +4232,8 @@
       "packagesPath": "C:\\Users\\GeoVictoria\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\GeoVictoria\\Desktop\\WORK\\Programacion\\ProyectosNET\\TareasMVC\\TareasMVC\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
         "C:\\Users\\GeoVictoria\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4214,7 +4241,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4227,12 +4253,21 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.MicrosoftAccount": {
+            "target": "Package",
+            "version": "[8.0.3, )"
+          },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.1, )"
@@ -4267,7 +4302,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using TareasMVC;
+using Microsoft.AspNetCore.Mvc.Razor;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +18,14 @@ var politicasUsuariosAutenticados = new AuthorizationPolicyBuilder()
 builder.Services.AddControllersWithViews(opciones =>
 {
 	opciones.Filters.Add(new AuthorizeFilter(politicasUsuariosAutenticados));
-});
+
+}).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
 builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlServer("name=DefaultConnection"));
-builder.Services.AddAuthentication();
+builder.Services.AddAuthentication().AddMicrosoftAccount(opciones =>
+{
+	opciones.ClientId = builder.Configuration["MicrosoftClientId"];
+	opciones.ClientSecret = builder.Configuration["MicrosoftSecretId"];
+});
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(opciones =>
 {
 	opciones.SignIn.RequireConfirmedAccount = false;
@@ -32,8 +40,23 @@ builder.Services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.Ap
 });
 
 
+
+
+builder.Services.AddLocalization(opciones =>
+{
+	opciones.ResourcesPath = "Resources";
+});
+
 var app = builder.Build();
 
+
+var culturasUISoportadas = new[] { "es", "en"};
+
+app.UseRequestLocalization(opciones =>
+{
+	opciones.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("es");
+	opciones.SupportedUICultures = culturasUISoportadas.Select(cultura => new CultureInfo(cultura)).ToList(); 
+});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

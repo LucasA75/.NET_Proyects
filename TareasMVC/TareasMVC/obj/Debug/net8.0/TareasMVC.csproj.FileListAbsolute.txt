@@ -129,7 +129,6 @@ C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\scopedcss\bundle\TareasMVC.styles.css
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\scopedcss\projectbundle\TareasMVC.bundle.scp.css
-C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\TareasMVC.csproj.CopyComplete
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\TareasMVC.dll
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\refint\TareasMVC.dll
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\TareasMVC.pdb
@@ -141,3 +140,10 @@ C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\TareasMVC.csproj.Up2Date
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\bin\Debug\net8.0\en\TareasMVC.resources.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\TareasMVC.Resources.Controllers.HomeController.en.resources
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\TareasMVC.csproj.GenerateResource.cache
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\en\TareasMVC.resources.dll
+C:\Users\GeoVictoria\Desktop\WORK\Programacion\ProyectosNET\TareasMVC\TareasMVC\obj\Debug\net8.0\TareasMVC.Resources.Views.Home.Index.en.resources

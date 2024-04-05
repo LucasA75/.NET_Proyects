@@ -293,7 +293,12 @@ namespace TareasMVC.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
+                    b.Property<string>("UsuarioCreacionId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("UsuarioCreacionId");
 
                     b.ToTable("Tasks");
                 });
@@ -369,6 +374,15 @@ namespace TareasMVC.Migrations
                         .IsRequired();
 
                     b.Navigation("Task");
+                });
+
+            modelBuilder.Entity("TareasMVC.Entity.Tasks", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UsuarioCreacion")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCreacionId");
+
+                    b.Navigation("UsuarioCreacion");
                 });
 
             modelBuilder.Entity("TareasMVC.Entity.Tasks", b =>
