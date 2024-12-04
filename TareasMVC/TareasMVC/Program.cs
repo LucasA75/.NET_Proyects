@@ -19,7 +19,12 @@ builder.Services.AddControllersWithViews(opciones =>
 {
 	opciones.Filters.Add(new AuthorizeFilter(politicasUsuariosAutenticados));
 
-}).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+}).AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+.AddDataAnnotationsLocalization(opciones => 
+	opciones.DataAnnotationLocalizerProvider = (_,factoria) => 
+	factoria.Create(typeof(RecursoCompartido))
+);
+
 builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlServer("name=DefaultConnection"));
 builder.Services.AddAuthentication().AddMicrosoftAccount(opciones =>
 {

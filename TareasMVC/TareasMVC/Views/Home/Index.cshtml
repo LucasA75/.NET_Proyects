@@ -8,9 +8,17 @@
 
 <div class="text-center">
     <h1 class="display-4">@localizer["Bienvenido"]</h1>
-    <p>@localizer["Aprende acerca de <a href=\"https://learn.microsoft.com/aspnet/core\">Construir aplicaciones Web con ASP.NET</a>"]
+    <p>@localizer["Aprende mas"]
 </div>
 
 <div>
     <h3>@ViewBag.Saludo, Felipe</h3>
 </div>
+
+<button onclick="mostrarError()">
+    Mostrar error
+</button>
+
+@section Scripts {
+    <script src="~/js/utili.js"></script>
+}
